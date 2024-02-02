@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
 <div align="center">
 <h3> We Will Contact You Soon.....!!</h3>
 <h2> Thank You </h2>
-<a href="/web-01/first"> <h2>Login Page</h2> </a>
+<a href="/web-01/"> <h2>Match RelationShip</h2> </a>
 </div>
 </body>
 </html>

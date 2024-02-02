@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
 <hr>
 <div align="center">
 <h3> You Are Successfully Register...!!!</h3>
-<a href="/web-01/first"> <h2>Login Now</h2> </a>
+<a href="/web-01/FrontLoginPage"> <h2>Login Now</h2> </a>
 </div>
 </body>
 </html>

@@ -1,15 +1,16 @@
 package org.springProject.Configuration;
 
 import org.springProject.ContactSupport.PhoneFormatter;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.MessageCodesResolver;
 import org.springframework.validation.Validator;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -18,14 +19,36 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import javax.sql.DataSource;
+import javax.xml.stream.Location;
 import java.util.List;
 import java.util.Properties;
 
 @EnableWebMvc
 @Configuration
 @ComponentScan("org.springProject")
-@PropertySource("classpath:email.properties")
+//@PropertySource("classpath:email.properties")
 public class Spring_config implements WebMvcConfigurer {
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return NoOpPasswordEncoder.getInstance();
+    }
+    @Bean
+    JdbcTemplate jdbcTemplate(){
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(dataSource());
+        return jdbcTemplate;
+    }
+    @Bean
+   DataSource dataSource(){
+       DriverManagerDataSource dataSource=new DriverManagerDataSource();
+       dataSource.setUrl("jdbc:mysql://localhost:3306/love_calculator_project");
+       dataSource.setUsername("root");
+       dataSource.setPassword("nitinsoni0103");
+       dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+       return dataSource;
+   }
+
+//    Logger logger=Logger.getLogger(Spring_config.class.getName());
     Environment environment;
     @Bean
     InternalResourceViewResolver viewResolver(){
@@ -40,17 +63,17 @@ public class Spring_config implements WebMvcConfigurer {
         JavaMailSenderImpl javaMailSender=new JavaMailSenderImpl();
         javaMailSender.setHost("smtp.gmail.com");
        // System.out.println("${setHost}");
-        javaMailSender.setUsername("nitinsoni01031997@gmail.com");
-        javaMailSender.setPassword("Nitinsoni@0103");
+        javaMailSender.setUsername("nitinsoni13.cool@gmail.com");
+        javaMailSender.setPassword("Nitinsoni@13");
         javaMailSender.setPort(587);
 
         Properties mailproperties=new Properties();
-//        mailproperties.put("mail.smtp.starttls.enable", true);
-//        mailproperties.put("mail.smtp.ssl.trust","smtp.gmail.com");
-        mailproperties.put("mail.smtp.auth", true);
         mailproperties.put("mail.smtp.starttls.enable", true);
-        mailproperties.put("mail.smtp.host", "smtp.gmail.com");
-        mailproperties.put("mail.smtp.port", "587");
+        mailproperties.put("mail.smtp.ssl.trust","smtp.gmail.com");
+//        mailproperties.put("mail.smtp.auth", true);
+//        mailproperties.put("mail.smtp.starttls.enable", true);
+//        mailproperties.put("mail.smtp.host", "smtp.gmail.com");
+//        mailproperties.put("mail.smtp.port", "587");
         javaMailSender.setJavaMailProperties(mailproperties);
 
         return javaMailSender;
@@ -61,6 +84,7 @@ public class Spring_config implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry formatterRegistry) {
         formatterRegistry.addFormatter(new PhoneFormatter());
     }
+
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> list) {

@@ -19,16 +19,16 @@ margin-left:30px;}
 </br>
 
 <div align="right">
-<a href="/web-01/first"> <h2> Login Page </h2> </a>
+<a href="/web-01/FrontLoginPage"> <h2> Login Page </h2> </a>
 </div>
 
-<form:form action="successfull" method="get" modelAttribute="registrationDtoConfig"  >
+<form:form action="SuccessFull" method="POST" modelAttribute="registrationDtoConfig"  >
 <div align="center">
 <h3> Registration Form...!!</h3>
 <p>
 <label for="n">Name :</label>
-<form:input id="n" path="name" placeholder="UserName"/>
-<form:errors path="name" cssClass="errors"/>
+<form:input id="n" path="username" placeholder="UserName"/>
+<form:errors path="username" cssClass="errors"/>
 </p>
 
 <p>

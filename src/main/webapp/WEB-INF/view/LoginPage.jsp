@@ -28,10 +28,13 @@ margin-left:30px;}
 </form:form>
 </p>
 </div>
+
 <div align="center">
 <p>
-<h3> Login Form..!!</h3>
+<h2> Hi ${username}</h2>
+<h3> Match Your RelationShip</h3>
 <p>
+
 <form:form action="second" method="get" modelAttribute="matchDtoConfig" >
 <label for="n">Name :</label>
 <form:input id="n" path="userName" placeholder="Romeo"/>
@@ -41,6 +44,8 @@ margin-left:30px;}
 <label for="cn">Crush Name : </label>
 <form:input id="cn" path="crushName" placeholder="Juliet"/>
 </p>
+
+
 <p>
 <form:checkbox path="termAndCondition"/>
 <label> Agree Terms & Conditions </label>
@@ -52,13 +57,7 @@ margin-left:30px;}
 </form:form>
 
 
-<div align="center">
-<p>
-<form:form action="Registration" method="get" modelAttribute="registrationDtoConfig"  >
-<input type="submit" value="Registration"/>
-</form:form>
-</p>
-</div>
+
 
 
 

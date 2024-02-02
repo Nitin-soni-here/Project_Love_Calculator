@@ -8,11 +8,11 @@ import javax.validation.constraints.Size;
 public class Registration_Dto_Config {
     @NotBlank(message = "Not Be Blank")
     @Size(min = 3,max = 15,message = "Your Size Should Be 3 to 15")
-    private String name;
+    private String username;
     @Email
     private String emailId;
     @NotEmpty
-    private char[] password;
+    private String password;
     @NotEmpty
     private String country;
     @NotEmpty
@@ -20,12 +20,12 @@ public class Registration_Dto_Config {
 
     private CommunicationDTO communicationDTO;
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmailId() {
@@ -36,11 +36,11 @@ public class Registration_Dto_Config {
         this.emailId = emailId;
     }
 
-    public char[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(char[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -66,5 +66,18 @@ public class Registration_Dto_Config {
 
     public void setCommunicationDTO(CommunicationDTO communicationDTO) {
         this.communicationDTO = communicationDTO;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Registration_Dto_Config{" +
+                "username='" + username + '\'' +
+                ", emailId='" + emailId + '\'' +
+                ", password='" + password + '\'' +
+                ", country='" + country + '\'' +
+                ", gender='" + gender + '\'' +
+                ", communicationDTO=" + communicationDTO +
+                '}';
     }
 }

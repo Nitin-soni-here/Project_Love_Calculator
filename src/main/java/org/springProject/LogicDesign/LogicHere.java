@@ -1,8 +1,8 @@
 package org.springProject.LogicDesign;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-@Service
+@Repository
 public class LogicHere implements LOveCalculatorServices {
 
 

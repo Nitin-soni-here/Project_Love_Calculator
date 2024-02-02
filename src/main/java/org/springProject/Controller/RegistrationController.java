@@ -1,26 +1,40 @@
 package org.springProject.Controller;
 
 import org.springProject.DTO.Registration_Dto_Config;
+import org.springProject.Servicelayer.ServicesLayer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
 @Controller
 public class RegistrationController {
-    @RequestMapping("/Registration")
-    public String Formregistration(@ModelAttribute("registrationDtoConfig") Registration_Dto_Config registrationDtoConfig){
+    @Autowired
+    PasswordEncoder passwordEncoder;
+    @Autowired
+    ServicesLayer servicesLayer;
+    @GetMapping("/Registration")
+    public String FormRegistration(@ModelAttribute("registrationDtoConfig") Registration_Dto_Config registrationDtoConfig){
         return "registration";
     }
-    @RequestMapping("/successfull")
-    public String Successfullregistration(@Valid @ModelAttribute("registrationDtoConfig")
-                                              Registration_Dto_Config registrationDtoConfig, BindingResult result){
+    @PostMapping("/SuccessFull")
+    public String SuccessFullRegistration(@Valid @ModelAttribute("registrationDtoConfig")
+                                              Registration_Dto_Config registrationDtoConfig,BindingResult result){
         if(result.hasErrors()){
             return "registration";
         }
-        return "SuccessfullyRegistration";
+        String setEncoder=passwordEncoder.encode(registrationDtoConfig.getPassword());
+        registrationDtoConfig.setPassword(setEncoder);
+        System.out.println(setEncoder);
+
+        servicesLayer.insertQuery(registrationDtoConfig);
+        return "redirect:/FrontLoginPage?login";
     }
 
 }

@@ -1,4 +1,4 @@
-%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
@@ -14,5 +14,6 @@ pageEncoding="UTF-8"%>
 </div>
 <p>
 <a href="/web-01/Email" ><h3> Send Result To Your Email</h3></a>
+
 </body>
 </html>
